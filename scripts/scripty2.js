@@ -12,7 +12,8 @@ diffs = [];
    var newtaskmaster = document.querySelector('input[name="taskymaster"]:checked').value;
    masters.push(newtaskmaster);
    var newtasklevel = document.userTaskAdd.diff.value;
-   diffs.push(newtasklevel);
+   var diffnumb = Number(newtasklevel);
+   diffs.push(diffnumb);
    newtaskfull = [newtaskname, newtaskmaster, newtasklevel]
    tasks.push(newtaskfull);
    var taskList = "";
@@ -29,11 +30,11 @@ diffs = [];
 
 function drawChart() {
   var data = new google.visualization.DataTable();
-  data.addColumn('string', 'taskname');
+  // data.addColumn('string', 'taskname');
   data.addColumn('string', 'taskmaster');
   data.addColumn('number', 'taskdiff');
-  for(i = 0; i < names.length; i++)
-    data.addRow([names[i], masters[i], diffs[i]]);
+  for(i = 0; i < masters.length; i++)
+    data.addRow([/*names[i], */masters[i], diffs[i]]);
   console.log(data);
    // Set chart options
    var options = {'title':'Tasks by Performer',
