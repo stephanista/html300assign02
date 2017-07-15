@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ToDo App</title>
+    <script type="text/javascript" src="scripts/scripty2.js"></script>
+  </head>
+  <body>
+    <form name="userTaskAdd" onsubmit="addTask()">
+      <fieldset>
+        <legend>Add A Task</legend>
+          <label>What is the name of the task?
+            <input type="text" name="taskname" id="taskName">
+          </label><br>
+          <label>Who must perform the task?
+            <input type="radio" name="taskymaster" value="Stephanista">
+            Steph
+          </label>
+          <label>
+            <input type="radio" name="taskymaster" value="Nylet">
+            Nylet
+          </label>
+          <label>
+            <input type="radio" name="taskymaster" value="Yana">
+            Yana
+          </label><br>
+          <label>How difficult is the task?
+            <select name="diff">
+              <option value="Easy">Easy Peasy</option>
+              <option value="Medium">Meh</option>
+              <option value="Hard">Yikes</option>
+              <option value="Impossible">Good frickin' luck</option>
+            </select>
+          </label><br>
+        <input type="submit" name="submit" value="Add the task">
+        <input type="reset" name="clear" value="Clear">
+      </fieldset>
+    </form>
+
+    <p>Task List:</p>
+    <ul id="tasks">
+    </ul>
+
+  </body>
+</html>
