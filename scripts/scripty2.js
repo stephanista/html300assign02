@@ -12,8 +12,9 @@ diffs = [];
    var newtaskmaster = document.querySelector('input[name="taskymaster"]:checked').value;
    masters.push(newtaskmaster);
    var newtasklevel = document.userTaskAdd.diff.value;
-   newtaskfull = [newtaskname, newtaskmaster, newtasklevel]
    diffs.push(newtasklevel);
+   newtaskfull = [newtaskname, newtaskmaster, newtasklevel]
+   tasks.push(newtaskfull);
    var taskList = "";
    for (var i = 0, task; task = tasks[i]; i++) {
      taskList += "<li>" + task + "</li>";
@@ -23,21 +24,19 @@ diffs = [];
    console.log(tasks);
  }
 
-
-
  google.charts.load('current', {'packages':['corechart']});
  google.charts.setOnLoadCallback(drawChart);
 
- function drawChart() {
-   var data = new google.visualization.DataTable();
-   data.addColumn('string', 'taskname');
-   data.addColumn('string', 'taskmaster');
-   data.addColumn('string', 'taskdiff');
-   for(i = 0; i < names.length; i++)
-     data.addRow([names[i], masters[i], diffs[i]]);
-
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'taskname');
+  data.addColumn('string', 'taskmaster');
+  data.addColumn('number', 'taskdiff');
+  for(i = 0; i < names.length; i++)
+    data.addRow([names[i], masters[i], diffs[i]]);
+  console.log(data);
    // Set chart options
-   var options = {'title':'Tasks to Do',
+   var options = {'title':'Tasks by Performer',
                   'width':400,
                   'height':300,
                    pieHole: 0.4,};
