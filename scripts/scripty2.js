@@ -12,10 +12,10 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  for(var i = 0; i < masters.length; ++i) {
-   if(!mastercount[masters[i]])
-       mastercount[masters[i]] = 0;
-   ++mastercount[masters[i]];}
+  for(var i = 0; i< masters.length; i++) {
+      var num = masters[i];
+      mastercount[num] = mastercount[num] ? mastercount[num]+1 : 1;
+  }
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'taskmaster');
   data.addColumn('number', 'taskdiff');
