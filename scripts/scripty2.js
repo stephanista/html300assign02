@@ -1,26 +1,33 @@
- console.log("heya");
 
 tasks = [];
 names = [];
 masters = [];
 diffs = [];
 
+mastercount ={};
+
+
+
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
+  for(var i = 0; i < masters.length; ++i) {
+   if(!mastercount[masters[i]])
+       mastercount[masters[i]] = 0;
+   ++mastercount[masters[i]];}
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'taskmaster');
   data.addColumn('number', 'taskdiff');
-  for(i = 0; i < masters.length; i++)
-    data.addRow([masters[i], diffs.length]);
+  data.addRow(["Stephanista", mastercount.Stephanista])
+  data.addRow(["Nylet", mastercount.Nylet]);
+  data.addRow(["Yana", mastercount.Yana]);;
    // Set chart options
-   var options = {'title':'Tasks by Performer',
+   var options = {'title':'Task % by Performer',
                   'width':400,
                   'height':300,
                    pieHole: 0.4,};
 
-   // Instantiate and draw our chart, passing in some options.
    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
    chart.draw(data, options);
  }
