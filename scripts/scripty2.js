@@ -1,27 +1,29 @@
-
 tasks = [];
 names = [];
 masters = [];
 diffs = [];
 
-mastercount ={};
-
-
-
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
+function arrNum(array, performer) {
+    var count = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === performer) {
+            count++;
+        }
+    }
+    return count;
+}
+
 function drawChart() {
-  for(var i = 0; i< masters.length; i++) {
-      var num = masters[i];
-      mastercount[num] = mastercount[num] ? mastercount[num]+1 : 1;
-  }
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'taskmaster');
-  data.addColumn('number', 'taskdiff');
-  data.addRow(["Stephanista", mastercount.Stephanista])
-  data.addRow(["Nylet", mastercount.Nylet]);
-  data.addRow(["Yana", mastercount.Yana]);;
+  data.addColumn('number', 'tasknum');
+  data.addRow(["Stephanista", arrNum(masters, 'Stephanista')]);
+  data.addRow(["Nylet", arrNum(masters, 'Nylet')]);
+  data.addRow(["Yana", arrNum(masters, 'Yana')]);;
+  console.log(data);
    // Set chart options
    var options = {'title':'Task % by Performer',
                   'width':400,
@@ -30,13 +32,13 @@ function drawChart() {
 
    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
    chart.draw(data, options);
- }
+}
 
- function addTask() {
+function addTask() {
    event.preventDefault();
    var newtaskname = document.userTaskAdd.taskName.value;
    names.push(newtaskname);
-   var newtaskmaster = document.querySelector('input[name="taskymaster"]:checked').value;
+  var newtaskmaster = document.querySelector('input[name="taskymaster"]:checked').value;
    masters.push(newtaskmaster);
    var newtasklevel = document.userTaskAdd.diff.value;
    var diffnumb = Number(newtasklevel);
@@ -49,6 +51,5 @@ function drawChart() {
     }
    document.getElementById("tasks").innerHTML = taskList;
    console.log("Oh, you added.. '" + newtaskfull + "'. Awesome!")
-   console.log(tasks);
    drawChart();
- }
+}
